@@ -43,13 +43,16 @@ public class Main {
         File resultado = new File("resultado.csv");
         if(resultado.exists()) {
             resultado.delete();
+            resultado = new File("resultado.csv");
         }
         FileWriter writer = new FileWriter(resultado, true);
-        writer.append("Close\n");
-        for (Double valor : medias) {
-            writer.append(valor.toString() + ";\n");
-        }
+        BufferedWriter bfwriter = new BufferedWriter(writer);
 
+        bfwriter.append("Close\n");
+        for (Double valor : medias) {
+            bfwriter.append(valor.toString() + ";\n");
+        }
+        bfwriter.close();
 
     }
 
